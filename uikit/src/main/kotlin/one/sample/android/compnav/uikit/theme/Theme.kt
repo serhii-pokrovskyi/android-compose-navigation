@@ -1,11 +1,11 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/17/22, 10:45 AM
+ * Last modified: 4/17/22, 3:09 PM
  * Copyright (c) 2022
  */
 
-package one.sample.android.compnav.ui.theme
+package one.sample.android.compnav.uikit.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
