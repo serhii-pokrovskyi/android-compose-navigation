@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/17/22, 10:45 AM
+ * Last modified: 4/17/22, 2:57 PM
  * Copyright (c) 2022
  */
 
@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Android compose navigation"
 include ':app'
+include ':uikit'
