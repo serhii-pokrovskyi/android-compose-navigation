@@ -1,13 +1,15 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/17/22, 2:50 PM
+ * Last modified: 4/17/22, 3:03 PM
  * Copyright (c) 2022
  */
 
 buildscript {
     ext {
         kotlin_version = '1.6.10'
+        coroutines_version = '1.6.0'
+        desugar_version = '1.1.5'
         compose_version = '1.1.1'
         accompanist_version = '0.23.1'
         hilt_version = '2.41'
