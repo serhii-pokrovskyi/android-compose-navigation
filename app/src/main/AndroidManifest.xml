@@ -2,7 +2,7 @@
 <!--
   ~ Developed by Serhii Pokrovskyi
   ~ e-mail: serg.pokrovskyi@gmail.com
-  ~ Last modified: 4/17/22, 10:45 AM
+  ~ Last modified: 4/17/22, 2:55 PM
   ~ Copyright (c) 2022
   -->
 
@@ -10,6 +10,7 @@
     package="one.sample.android.compnav">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
