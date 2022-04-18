@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/18/22, 9:17 AM
+ * Last modified: 4/18/22, 3:14 PM
  * Copyright (c) 2022
  */
 
@@ -17,10 +17,12 @@ import androidx.navigation.navigation
 import one.sample.android.compnav.ui.InvitationScreen
 import one.sample.android.compnav.ui.LoginScreen
 import one.sample.android.compnav.ui.auth.DashboardScreen
+import one.sample.android.compnav.ui.auth.MockScreen1
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+    navController.addLogging()
     NavHost(navController = navController, startDestination = GlobalNavGraph.Invitation.route) {
         composable(route = GlobalNavGraph.Invitation.route) {
             InvitationScreen(navController)
@@ -35,7 +37,10 @@ fun AppNavigation() {
 private fun NavGraphBuilder.authNavigation(navController: NavController) {
     navigation(startDestination = AuthNavGraph.Dashboard.route, route = AuthNavGraph.PREF) {
         composable(route = AuthNavGraph.Dashboard.route) {
-            DashboardScreen()
+            DashboardScreen(navController)
+        }
+        composable(route = AuthNavGraph.MockScreen1.route) {
+            MockScreen1(navController = navController)
         }
     }
 }

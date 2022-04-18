@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/18/22, 9:17 AM
+ * Last modified: 4/18/22, 3:14 PM
  * Copyright (c) 2022
  */
 
@@ -16,6 +16,7 @@ object AuthNavGraph {
     const val PREF = "/auth/"
 
     object Dashboard : NavItem(route = "${PREF}dashboard")
+    object MockScreen1 : NavItem(route = "${PREF}mockscreen1")
 }
 
 object RegisterNavGraph {
