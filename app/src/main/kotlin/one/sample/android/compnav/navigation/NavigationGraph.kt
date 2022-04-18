@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/17/22, 6:44 PM
+ * Last modified: 4/18/22, 9:17 AM
  * Copyright (c) 2022
  */
 
@@ -13,7 +13,7 @@ object GlobalNavGraph {
 }
 
 object AuthNavGraph {
-    private const val PREF = "/auth/"
+    const val PREF = "/auth/"
 
     object Dashboard : NavItem(route = "${PREF}dashboard")
 }
