@@ -1,13 +1,15 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/18/22, 9:17 AM
+ * Last modified: 4/19/22, 1:57 PM
  * Copyright (c) 2022
  */
 
 package one.sample.android.compnav.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
@@ -17,10 +19,16 @@ import androidx.navigation.navigation
 import one.sample.android.compnav.ui.InvitationScreen
 import one.sample.android.compnav.ui.LoginScreen
 import one.sample.android.compnav.ui.auth.DashboardScreen
+import one.sample.android.compnav.ui.auth.DashboardViewModel
+import one.sample.android.compnav.ui.auth.MockScreen1
+import one.sample.android.compnav.ui.auth.fixedflow.FixedFlowScreen1
+import one.sample.android.compnav.ui.auth.fixedflow.FixedFlowScreen2
+import one.sample.android.compnav.ui.auth.fixedflow.FixedFlowScreen3
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+    navController.addLogging()
     NavHost(navController = navController, startDestination = GlobalNavGraph.Invitation.route) {
         composable(route = GlobalNavGraph.Invitation.route) {
             InvitationScreen(navController)
@@ -32,10 +40,32 @@ fun AppNavigation() {
     }
 }
 
-private fun NavGraphBuilder.authNavigation(navController: NavController) {
-    navigation(startDestination = AuthNavGraph.Dashboard.route, route = AuthNavGraph.PREF) {
+private fun NavGraphBuilder.authNavigation(navController: NavController) =
+    navigation(startDestination = AuthNavGraph.Dashboard.route, route = AuthNavGraph.route) {
         composable(route = AuthNavGraph.Dashboard.route) {
-            DashboardScreen()
+            val parentEntry = remember(it) {
+                navController.getBackStackEntry(AuthNavGraph.Dashboard.route)
+            }
+            val dashboardViewModel = hiltViewModel<DashboardViewModel>(
+                parentEntry
+            )
+            DashboardScreen(navController, dashboardViewModel)
+        }
+        composable(route = AuthNavGraph.MockScreen1.route) {
+            MockScreen1(navController = navController)
+        }
+        navigation(
+            startDestination = AuthNavGraph.FixedFlow1.FixedFlowScreen1.route,
+            route = AuthNavGraph.FixedFlow1.route
+        ) {
+            composable(route = AuthNavGraph.FixedFlow1.FixedFlowScreen1.route) {
+                FixedFlowScreen1(navController = navController)
+            }
+            composable(route = AuthNavGraph.FixedFlow1.FixedFlowScreen2.route) {
+                FixedFlowScreen2(navController = navController)
+            }
+            composable(route = AuthNavGraph.FixedFlow1.FixedFlowScreen3.route) {
+                FixedFlowScreen3(navController = navController)
+            }
         }
     }
-}
