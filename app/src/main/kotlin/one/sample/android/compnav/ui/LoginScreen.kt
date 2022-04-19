@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/19/22, 12:08 PM
+ * Last modified: 4/19/22, 1:53 PM
  * Copyright (c) 2022
  */
 
@@ -40,7 +40,7 @@ fun LoginScreen(
         loginState.value?.let {
             if (it.isSuccess) {
                 navController.backQueue.clear()
-                navController.navigate(AuthNavGraph.PREF)
+                navController.navigate(AuthNavGraph.route)
             } else {
                 Toast.makeText(context, "Login failed", Toast.LENGTH_LONG).show()
             }
