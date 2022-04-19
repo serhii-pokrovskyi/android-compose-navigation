@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/19/22, 1:49 PM
+ * Last modified: 4/19/22, 2:02 PM
  * Copyright (c) 2022
  */
 
@@ -12,15 +12,20 @@ import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import one.sample.android.compnav.navigation.AuthNavGraph
 import one.sample.android.compnav.uikit.screen.ScreenPrimary
+import timber.log.Timber
+import javax.inject.Inject
 
 @Composable
 fun DashboardScreen(
-    navController: NavController
+    navController: NavController,
+    dashboardViewModel: DashboardViewModel
 ) {
     ScreenPrimary(
         title = "Dashboard"
@@ -39,12 +44,26 @@ fun DashboardScreen(
             }
 
 
-            val textState = remember {
-                mutableStateOf("")
-            }
+            val textState = dashboardViewModel.testTextState.collectAsState()
             TextField(value = textState.value, onValueChange = {
-                textState.value = it
+                dashboardViewModel.setTestText(it)
             })
         }
+    }
+}
+
+@HiltViewModel
+class DashboardViewModel @Inject constructor(
+    //
+) : ViewModel() {
+
+    val testTextState = MutableStateFlow("")
+
+    fun setTestText(text: String) {
+        testTextState.value = text
+    }
+
+    init {
+        Timber.d("ViewModel instance = ${this.hashCode()}")
     }
 }

@@ -1,13 +1,15 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/19/22, 12:51 PM
+ * Last modified: 4/19/22, 1:57 PM
  * Copyright (c) 2022
  */
 
 package one.sample.android.compnav.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
@@ -17,6 +19,7 @@ import androidx.navigation.navigation
 import one.sample.android.compnav.ui.InvitationScreen
 import one.sample.android.compnav.ui.LoginScreen
 import one.sample.android.compnav.ui.auth.DashboardScreen
+import one.sample.android.compnav.ui.auth.DashboardViewModel
 import one.sample.android.compnav.ui.auth.MockScreen1
 import one.sample.android.compnav.ui.auth.fixedflow.FixedFlowScreen1
 import one.sample.android.compnav.ui.auth.fixedflow.FixedFlowScreen2
@@ -40,7 +43,13 @@ fun AppNavigation() {
 private fun NavGraphBuilder.authNavigation(navController: NavController) =
     navigation(startDestination = AuthNavGraph.Dashboard.route, route = AuthNavGraph.route) {
         composable(route = AuthNavGraph.Dashboard.route) {
-            DashboardScreen(navController)
+            val parentEntry = remember(it) {
+                navController.getBackStackEntry(AuthNavGraph.Dashboard.route)
+            }
+            val dashboardViewModel = hiltViewModel<DashboardViewModel>(
+                parentEntry
+            )
+            DashboardScreen(navController, dashboardViewModel)
         }
         composable(route = AuthNavGraph.MockScreen1.route) {
             MockScreen1(navController = navController)
