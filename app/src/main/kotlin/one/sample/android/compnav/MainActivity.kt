@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/17/22, 10:45 AM
+ * Last modified: 4/19/22, 2:21 PM
  * Copyright (c) 2022
  */
 
@@ -10,41 +10,20 @@ package one.sample.android.compnav
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import one.sample.android.compnav.ui.theme.AndroidComposeNavigationTheme
+import androidx.compose.animation.ExperimentalAnimationApi
+import dagger.hilt.android.AndroidEntryPoint
+import one.sample.android.compnav.navigation.AppNavigation
+import one.sample.android.compnav.uikit.theme.AndroidComposeNavigationTheme
 
+@ExperimentalAnimationApi
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AndroidComposeNavigationTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
+                AppNavigation()
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    AndroidComposeNavigationTheme {
-        Greeting("Android")
     }
 }
