@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/19/22, 2:38 PM
+ * Last modified: 4/20/22, 12:56 PM
  * Copyright (c) 2022
  */
 
@@ -24,6 +24,8 @@ import one.sample.android.compnav.ui.auth.MockScreen1
 import one.sample.android.compnav.ui.auth.fixedflow.FixedFlowScreen1
 import one.sample.android.compnav.ui.auth.fixedflow.FixedFlowScreen2
 import one.sample.android.compnav.ui.auth.fixedflow.FixedFlowScreen3
+import one.sample.android.compnav.ui.auth.operation.OperationScreen1
+import one.sample.android.compnav.ui.auth.operation.OperationScreen2
 
 @ExperimentalAnimationApi
 @Composable
@@ -72,5 +74,20 @@ private fun NavGraphBuilder.authNavigation(navController: NavController) =
             composableForward(route = AuthNavGraph.FixedFlow1.FixedFlowScreen3.route) {
                 FixedFlowScreen3(navController = navController)
             }
+        }
+        operationScreens(navController = navController)
+    }
+
+@ExperimentalAnimationApi
+private fun NavGraphBuilder.operationScreens(navController: NavController) =
+    navigation(
+        startDestination = AuthNavGraph.OperationScreens.OperationScreen1.route,
+        route = AuthNavGraph.OperationScreens.route
+    ) {
+        composableForward(route = AuthNavGraph.OperationScreens.OperationScreen1.route) {
+            OperationScreen1(navController = navController)
+        }
+        composableForward(route = AuthNavGraph.OperationScreens.OperationScreen2.route) {
+            OperationScreen2(navController = navController)
         }
     }

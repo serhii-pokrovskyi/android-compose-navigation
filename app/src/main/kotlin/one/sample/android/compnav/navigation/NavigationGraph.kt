@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/20/22, 11:04 AM
+ * Last modified: 4/20/22, 12:56 PM
  * Copyright (c) 2022
  */
 
@@ -19,6 +19,11 @@ object AuthNavGraph : NavItem(route = "/auth/") {
         object FixedFlowScreen1 : NavItem(route = "${route}fixedflowscreen1")
         object FixedFlowScreen2 : NavItem(route = "${route}fixedflowscreen2")
         object FixedFlowScreen3 : NavItem(route = "${route}fixedflowscreen3")
+    }
+
+    object OperationScreens : NavItem(route = "${route}operation_screens") {
+        object OperationScreen1 : NavItem(route = "${route}operation_screen_1")
+        object OperationScreen2 : NavItem(route = "${route}operation_screen_2")
     }
 }
 
