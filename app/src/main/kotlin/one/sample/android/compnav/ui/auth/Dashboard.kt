@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/19/22, 2:02 PM
+ * Last modified: 4/20/22, 12:51 PM
  * Copyright (c) 2022
  */
 
@@ -18,6 +18,7 @@ import androidx.navigation.NavController
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import one.sample.android.compnav.navigation.AuthNavGraph
+import one.sample.android.compnav.navigation.navigateSingleTop
 import one.sample.android.compnav.uikit.screen.ScreenPrimary
 import timber.log.Timber
 import javax.inject.Inject
@@ -38,9 +39,14 @@ fun DashboardScreen(
                 Text(text = "MockScreen1")
             }
             Button(onClick = {
-                navController.navigate(AuthNavGraph.FixedFlow1.route)
+                navController.navigateSingleTop(AuthNavGraph.FixedFlow1.route)
             }) {
                 Text(text = "fixedflow1")
+            }
+            Button(onClick = {
+                navController.navigateSingleTop(AuthNavGraph.OperationScreens.OperationScreen1.route)
+            }) {
+                Text(text = "Launch operation")
             }
 
 
