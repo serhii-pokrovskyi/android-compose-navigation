@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/20/22, 12:56 PM
+ * Last modified: 4/20/22, 3:45 PM
  * Copyright (c) 2022
  */
 
@@ -16,6 +16,9 @@ import androidx.navigation.NavGraphBuilder
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.navigation
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import one.sample.android.compnav.navigation.graph.AuthGraph
+import one.sample.android.compnav.navigation.graph.GlobalGraph
+import one.sample.android.compnav.navigation.graph.OperationGraph
 import one.sample.android.compnav.ui.InvitationScreen
 import one.sample.android.compnav.ui.LoginScreen
 import one.sample.android.compnav.ui.auth.DashboardScreen
@@ -34,12 +37,12 @@ fun AppNavigation() {
     navController.addLogging()
     AnimatedNavHost(
         navController = navController,
-        startDestination = GlobalNavGraph.Invitation.route
+        startDestination = GlobalGraph.Invitation.route
     ) {
-        composableForward(route = GlobalNavGraph.Invitation.route) {
+        composableForward(route = GlobalGraph.Invitation.route) {
             InvitationScreen(navController)
         }
-        composableForward(route = GlobalNavGraph.Login.route) {
+        composableForward(route = GlobalGraph.Login.route) {
             LoginScreen(navController)
         }
         authNavigation(navController)
@@ -48,30 +51,30 @@ fun AppNavigation() {
 
 @ExperimentalAnimationApi
 private fun NavGraphBuilder.authNavigation(navController: NavController) =
-    navigation(startDestination = AuthNavGraph.Dashboard.route, route = AuthNavGraph.route) {
-        composableForward(route = AuthNavGraph.Dashboard.route) {
+    navigation(startDestination = AuthGraph.Dashboard.route, route = AuthGraph.route) {
+        composableForward(route = AuthGraph.Dashboard.route) {
             val parentEntry = remember(it) {
-                navController.getBackStackEntry(AuthNavGraph.Dashboard.route)
+                navController.getBackStackEntry(AuthGraph.Dashboard.route)
             }
             val dashboardViewModel = hiltViewModel<DashboardViewModel>(
                 parentEntry
             )
             DashboardScreen(navController, dashboardViewModel)
         }
-        composableForward(route = AuthNavGraph.MockScreen1.route) {
+        composableForward(route = AuthGraph.MockScreen1.route) {
             MockScreen1(navController = navController)
         }
         navigation(
-            startDestination = AuthNavGraph.FixedFlow1.FixedFlowScreen1.route,
-            route = AuthNavGraph.FixedFlow1.route
+            startDestination = AuthGraph.FixedFlow1.FixedFlowScreen1.route,
+            route = AuthGraph.FixedFlow1.route
         ) {
-            composableForward(route = AuthNavGraph.FixedFlow1.FixedFlowScreen1.route) {
+            composableForward(route = AuthGraph.FixedFlow1.FixedFlowScreen1.route) {
                 FixedFlowScreen1(navController = navController)
             }
-            composableForward(route = AuthNavGraph.FixedFlow1.FixedFlowScreen2.route) {
+            composableForward(route = AuthGraph.FixedFlow1.FixedFlowScreen2.route) {
                 FixedFlowScreen2(navController = navController)
             }
-            composableForward(route = AuthNavGraph.FixedFlow1.FixedFlowScreen3.route) {
+            composableForward(route = AuthGraph.FixedFlow1.FixedFlowScreen3.route) {
                 FixedFlowScreen3(navController = navController)
             }
         }
@@ -81,13 +84,13 @@ private fun NavGraphBuilder.authNavigation(navController: NavController) =
 @ExperimentalAnimationApi
 private fun NavGraphBuilder.operationScreens(navController: NavController) =
     navigation(
-        startDestination = AuthNavGraph.OperationScreens.OperationScreen1.route,
-        route = AuthNavGraph.OperationScreens.route
+        startDestination = OperationGraph.OperationScreen1.route,
+        route = OperationGraph.route
     ) {
-        composableForward(route = AuthNavGraph.OperationScreens.OperationScreen1.route) {
+        composableForward(route = OperationGraph.OperationScreen1.route) {
             OperationScreen1(navController = navController)
         }
-        composableForward(route = AuthNavGraph.OperationScreens.OperationScreen2.route) {
+        composableForward(route = OperationGraph.OperationScreen2.route) {
             OperationScreen2(navController = navController)
         }
     }

@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/19/22, 1:53 PM
+ * Last modified: 4/20/22, 3:45 PM
  * Copyright (c) 2022
  */
 
@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import one.sample.android.compnav.navigation.AuthNavGraph
+import one.sample.android.compnav.navigation.graph.AuthGraph
 import one.sample.android.compnav.uikit.screen.ScreenFull
 import javax.inject.Inject
 
@@ -40,7 +40,7 @@ fun LoginScreen(
         loginState.value?.let {
             if (it.isSuccess) {
                 navController.backQueue.clear()
-                navController.navigate(AuthNavGraph.route)
+                navController.navigate(AuthGraph.route)
             } else {
                 Toast.makeText(context, "Login failed", Toast.LENGTH_LONG).show()
             }
