@@ -1,15 +1,15 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/19/22, 1:53 PM
+ * Last modified: 4/20/22, 11:04 AM
  * Copyright (c) 2022
  */
 
 package one.sample.android.compnav.navigation
 
-object GlobalNavGraph {
-    object Invitation : NavItem(route = "invitation")
-    object Login : NavItem(route = "login")
+object GlobalNavGraph : NavItem(route = "/") {
+    object Invitation : NavItem(route = "${route}invitation")
+    object Login : NavItem(route = "${route}login")
 }
 
 object AuthNavGraph : NavItem(route = "/auth/") {
@@ -22,8 +22,6 @@ object AuthNavGraph : NavItem(route = "/auth/") {
     }
 }
 
-object RegisterNavGraph {
-    private const val PREF = "/register/"
-
-    object RegisterPhone : NavItem(route = "${PREF}phone")
+object RegisterNavGraph : NavItem(route = "/register/") {
+    object RegisterPhone : NavItem(route = "${route}phone")
 }
