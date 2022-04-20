@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/18/22, 10:00 AM
+ * Last modified: 4/20/22, 3:45 PM
  * Copyright (c) 2022
  */
 
@@ -14,7 +14,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
-import one.sample.android.compnav.navigation.GlobalNavGraph
+import one.sample.android.compnav.navigation.graph.GlobalGraph
 import one.sample.android.compnav.uikit.screen.ScreenFull
 
 @Composable
@@ -26,7 +26,7 @@ fun InvitationScreen(
         Column {
             Text(text = "Invitation screen")
             Button(onClick = {
-                navController.navigate(GlobalNavGraph.Login.route)
+                navController.navigate(GlobalGraph.Login.route)
             }) {
                 Text(text = "Login")
             }

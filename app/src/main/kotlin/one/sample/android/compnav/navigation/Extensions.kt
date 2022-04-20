@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/20/22, 12:51 PM
+ * Last modified: 4/20/22, 4:20 PM
  * Copyright (c) 2022
  */
 
@@ -28,12 +28,18 @@ fun NavController.addLogging() {
     }
 }
 
+/**
+ * Helper function for simplification "single top" navigation
+ */
 fun NavController.navigateSingleTop(route: String) {
     this.navigate(route = route) {
         launchSingleTop = true
     }
 }
 
+/**
+ * Encapsulates logic of animations
+ */
 @ExperimentalAnimationApi
 fun NavGraphBuilder.composableForward(
     route: String,
