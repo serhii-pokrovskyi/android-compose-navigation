@@ -1,7 +1,7 @@
 /*
  * Developed by Serhii Pokrovskyi
  * e-mail: serg.pokrovskyi@gmail.com
- * Last modified: 4/20/22, 12:51 PM
+ * Last modified: 4/20/22, 3:45 PM
  * Copyright (c) 2022
  */
 
@@ -12,7 +12,8 @@ import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
-import one.sample.android.compnav.navigation.AuthNavGraph
+import one.sample.android.compnav.navigation.graph.AuthGraph
+import one.sample.android.compnav.navigation.graph.OperationGraph
 import one.sample.android.compnav.navigation.navigateSingleTop
 import one.sample.android.compnav.uikit.screen.ScreenSecondary
 
@@ -33,12 +34,12 @@ fun OperationScreen1(
                 Text(text = "back")
             }
             Button(onClick = {
-                navController.navigateSingleTop(AuthNavGraph.OperationScreens.OperationScreen2.route)
+                navController.navigateSingleTop(OperationGraph.OperationScreen2.route)
             }) {
                 Text(text = "to screen2")
             }
             Button(onClick = {
-                navController.popBackStack(route = AuthNavGraph.Dashboard.route, inclusive = false)
+                navController.popBackStack(route = AuthGraph.Dashboard.route, inclusive = false)
             }) {
                 Text(text = "to dashboard")
             }
